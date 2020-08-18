@@ -29,21 +29,12 @@ class CPU:
 
 
     def load(self):
-        """Load a program into memory."""
-
         address = 0
+        program = []
+        f = open(f'examples/{sys.argv[1]}', 'r')
+        program = f.read().split('\n')
+        program = [int(line.split('#')[0], 2) for line in program if line != '' and line[0] != '#']
 
-        # For now, we've just hardcoded a program:
-
-        program = [
-            # From print8.ls8
-            0b10000010, # LDI R0,8
-            0b00000000,
-            0b00001000,
-            0b01000111, # PRN R0
-            0b00000000,
-            0b00000001, # HLT
-        ]
         for instruction in program:
             self.ram_write(instruction, address)
             address += 1
@@ -127,3 +118,8 @@ class CPU:
             self.branch_table[IR](operand_a, operand_b)
 
             self.pc += op_count + 1
+
+# Program runs with
+'''
+python3 ls8.py /examplefile.ls8
+'''
