@@ -105,7 +105,7 @@ class CPU:
     def alu(self, op, reg_a, reg_b):
         val_a = self.reg[reg_a]
         val_b = self.reg[reg_b] if reg_b < 8 else 0
-        # Define operations
+        # Define operations ALSO STRETCH GOALS
         switch = {
             ADD: val_a + val_b,
             AND: val_a & val_b,
